@@ -1,508 +1,140 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Engineering Portfolio</title>
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Your Name — Portfolio</title>
+  <meta name="description" content="Portfolio — Landing pages, video editing, virtual assistance, technical support." />
   <style>
-    body { background:#0b0b0b; color:#e6e6e6; font-family:'Montserrat',sans-serif; }
-
-    /* HERO */
-    .hero-custom {
-      background:url('https://images.pexels.com/photos/3912981/pexels-photo-3912981.jpeg?auto=compress&cs=tinysrgb&w=1600') center/cover no-repeat;
-      height:95vh; display:flex; align-items:center; justify-content:center; position:relative;
-    }
-    .hero-custom::after { content:''; position:absolute; inset:0; background:rgba(0,0,0,0.6); }
-    .hero-inner { position:relative; text-align:center; z-index:2; }
-    .hero-title { font-size:3.5rem; font-weight:800; letter-spacing:1px; animation:fadeInTitle 1.2s ease; }
-    @keyframes fadeInTitle { from{opacity:0;transform:translateY(20px);} to{opacity:1;transform:none;} }
-
-    .cta-buttons a {
-      transition:0.3s;
-    }
-    .cta-buttons a:hover {
-      transform:scale(1.05);
-      box-shadow:0 6px 18px rgba(0,150,255,0.4);
-    }
-
-    /* SECTIONS */
-    .project-card,.testimonial-card {
-      background:#161616;border-radius:10px;overflow:hidden;transition:0.3s; height:100%;
-    }
-    .project-card:hover,.testimonial-card:hover {
-      transform:translateY(-8px) scale(1.02);
-      box-shadow:0 8px 20px rgba(0,0,0,0.6);
-    }
-
-    .project-card img,.team-photo { width:100%;height:220px;object-fit:cover; }
-
-    /* SERVICES */
-    .service-box {
-      background:#151515; border-radius:10px; padding:2rem;
-      transition:0.25s; text-align:center;
-    }
-    .service-box:hover {
-      transform:translateY(-7px);
-      box-shadow:0 6px 18px rgba(0,150,255,0.2);
-    }
-
-    /* STATS */
-    .stats-box {
-      text-align:center;
-      padding:2rem;
-      background:#101010;
-      border-radius:10px;
-      transition:0.3s;
-    }
-    .stats-box:hover { transform:scale(1.05); }
-
-    /* FAQ */
-    .faq-box {
-      background:#151515;
-      padding:1.5rem;
-      border-radius:10px;
-      margin-bottom:1rem;
-    }
-
-    /* GALLERY */
-    .gallery-img {
-      width:100%;
-      border-radius:10px;
-      transition:0.3s;
-      height:230px;
-      object-fit:cover;
-    }
-    .gallery-img:hover {
-      transform:scale(1.05);
-      box-shadow:0 8px 20px rgba(0,0,0,0.5);
-    }
-
-    /* TEAM — GLASS BLUR */
-    .team-card {
-      background:rgba(255,255,255,0.05);
-      backdrop-filter:blur(10px);
-      border:1px solid rgba(255,255,255,0.08);
-      border-radius:20px;
-      padding:1.5rem;
-      transition:0.3s;
-    }
-    .team-card:hover {
-      transform:translateY(-10px) scale(1.03);
-      box-shadow:0 8px 25px rgba(0,200,255,0.2);
-      border-color:rgba(0,200,255,0.4);
-    }
-    .team-photo {
-      border-radius:14px;
-    }
-
-    /* CASE STUDY */
-    .case-box {
-      background:#161616;
-      padding:2rem;
-      border-radius:10px;
-      transition:0.3s;
-    }
-    .case-box:hover {
-      transform:scale(1.03);
-      box-shadow:0 8px 25px rgba(0,0,0,0.6);
-    }
-
-    /* FOOTER */
-    .footer { background:#000; color:#999; padding-top:3rem; }
-    .social-icons a {
-      margin:0 .5rem;
-      font-size:1.5rem;
-      color:#e6e6e6;
-      transition:0.3s;
-    }
-    .social-icons a:hover { color:#00aaff; }
+    :root { --bg:#0b1020; --card:#111a33; --text:#e9eefc; --muted:#a8b3d6; --accent:#6aa9ff; --line:rgba(255,255,255,.08); }
+    *{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:radial-gradient(1200px 700px at 10% 0%, #16224a 0%, var(--bg) 60%);color:var(--text);}
+    a{color:var(--accent);text-decoration:none} a:hover{text-decoration:underline}
+    .wrap{max-width:1050px;margin:0 auto;padding:28px}
+    .hero{padding:28px 0 10px;display:grid;gap:14px}
+    .badge{display:inline-flex;gap:10px;align-items:center;border:1px solid var(--line);padding:8px 12px;border-radius:999px;color:var(--muted);width:fit-content;background:rgba(255,255,255,.03)}
+    h1{margin:0;font-size:42px;line-height:1.1}
+    .sub{color:var(--muted);max-width:70ch;font-size:16px;line-height:1.6}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+    .btn{display:inline-flex;align-items:center;gap:10px;border-radius:12px;padding:10px 14px;border:1px solid var(--line);background:rgba(255,255,255,.05);color:var(--text)}
+    .btn.primary{background:linear-gradient(90deg, rgba(106,169,255,.25), rgba(106,169,255,.08));border-color:rgba(106,169,255,.35)}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;margin-top:18px}
+    .card{grid-column:span 12;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:18px;padding:18px}
+    @media(min-width:900px){ .card.half{grid-column:span 6} .card.third{grid-column:span 4} }
+    h2{margin:0 0 10px;font-size:18px}
+    .muted{color:var(--muted)}
+    .pillrow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .pill{font-size:13px;color:var(--muted);border:1px solid var(--line);padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.03)}
+    .rec{display:grid;gap:12px;margin-top:10px}
+    .recitem{padding:14px;border:1px solid var(--line);border-radius:14px;background:rgba(0,0,0,.12)}
+    .recmeta{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+    .quote{margin:8px 0 0;line-height:1.6}
+    footer{margin:26px 0 8px;color:var(--muted);font-size:13px}
+    .topline{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
   </style>
 </head>
-
 <body>
+  <div class="wrap">
+    <div class="topline">
+      <div class="badge">⚡ Available for freelance projects</div>
+      <div class="muted">PH (UTC+8)</div>
+    </div>
 
-  <!-- HERO -->
-  <section class="hero-custom">
-    <div class="hero-inner" data-aos="fade-up">
-      <h1 class="hero-title">Engineering Project Studio</h1>
-      <p class="subtitle is-5 mt-3">Mechanical • Electronics • CAD • Automation • Thesis Systems</p>
-      <div class="cta-buttons" style="margin-top:20px;">
-        <a href="#contact" class="button is-primary is-medium">Free Consultation Call</a>
-        <a href="#real-projects" class="button is-dark is-medium">Explore Work</a>
+    <section class="hero">
+      <h1>Your Name</h1>
+      <div class="sub">
+        I help businesses and creators with <b>landing pages</b>, <b>podcast/video editing</b>, and <b>technical support</b>.
+        Fast communication, clean output, and no excuses.
       </div>
-    </div>
-  </section>
 
-  <!-- STATS -->
-  <section class="section" data-aos="fade-up">
-    <div class="container">
-      <div class="columns is-multiline">
-
-        <div class="column is-one-quarter">
-          <div class="stats-box">
-            <h1 class="title is-2">120+</h1>
-            <p>Projects Completed</p>
-          </div>
-        </div>
-
-        <div class="column is-one-quarter">
-          <div class="stats-box">
-            <h1 class="title is-2">30+</h1>
-            <p>Thesis Builds Delivered</p>
-          </div>
-        </div>
-
-        <div class="column is-one-quarter">
-          <div class="stats-box">
-            <h1 class="title is-2">99%</h1>
-            <p>Client Win Rate</p>
-          </div>
-        </div>
-
-        <div class="column is-one-quarter">
-          <div class="stats-box">
-            <h1 class="title is-2">99%</h1>
-            <p>Defense Passing Rate</p>
-          </div>
-        </div>
-
+      <div class="cta">
+        <a class="btn primary" href="mailto:youremail@gmail.com">✉️ Email me</a>
+        <a class="btn" href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME/" target="_blank" rel="noopener">🔗 LinkedIn</a>
+        <a class="btn" href="#recommendations">⭐ Recommendations</a>
       </div>
-    </div>
-  </section>
 
-  <!-- ABOUT -->
-  <section class="section" id="about" data-aos="fade-up">
-    <div class="container">
-      <h2 class="title is-3 has-text-centered">About Our Engineering Team</h2>
-      <p class="has-text-centered mt-3" style="max-width:750px;margin:auto;">
-        We design, fabricate, and build full engineering systems — from mechanical assemblies,
-        electronics, automation, sensors, CAD layouts, embedded systems, and complete thesis projects.
-        Our team handles everything: research, planning, documentation, coding, fabrication,
-        testing, and real-world deployment.
-      </p>
-    </div>
-  </section>
+      <div class="pillrow">
+        <span class="pill">Landing Pages</span>
+        <span class="pill">Podcast Editing</span>
+        <span class="pill">Video Editing</span>
+        <span class="pill">Virtual Assistance</span>
+        <span class="pill">Tech Support</span>
+      </div>
+    </section>
 
-  <!-- COMPLETED PROJECTS -->
-  <section class="section" id="real-projects" data-aos="fade-up">
-    <div class="container">
-      <h2 class="title is-3 has-text-centered">Completed Projects</h2>
+    <section class="grid">
+      <div class="card third">
+        <h2>What I do</h2>
+        <div class="muted">Web pages, editing, and systems help—end-to-end.</div>
+        <div class="pillrow">
+          <span class="pill">HTML/CSS</span><span class="pill">Go</span><span class="pill">Bulma</span><span class="pill">Automation</span>
+        </div>
+      </div>
 
-      <div class="columns is-multiline mt-5">
+      <div class="card third">
+        <h2>How I work</h2>
+        <div class="muted">
+          Clear scope → quick draft → feedback → final delivery.
+        </div>
+      </div>
 
-        <div class="column is-half">
-          <div class="project-card">
-            <img src="https://images.pexels.com/photos/256297/pexels-photo-256297.jpeg?auto=compress&cs=tinysrgb&w=1600" />
-            <div class="p-5">
-              <h3 class="title is-4">Solar-Powered Rolling Egg Incubator</h3>
-              <p>Automated rolling, calibrated temperature, sensors, humidity control, LCD, and ionizer.</p>
+      <div class="card third">
+        <h2>Contact</h2>
+        <div class="muted">
+          Email: <a href="mailto:youremail@gmail.com">youremail@gmail.com</a><br/>
+          LinkedIn: <a href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME/" target="_blank" rel="noopener">Profile</a>
+        </div>
+      </div>
+
+      <div class="card half" id="recommendations">
+        <h2>LinkedIn Recommendations (verifiable)</h2>
+        <div class="muted">
+          LinkedIn doesn’t provide an official embeddable widget for Recommendations,
+          so I show excerpts here and link to the source.
+        </div>
+
+        <div class="cta" style="margin-top:12px;">
+          <a class="btn primary" href="https://www.linkedin.com/in/YOUR-LINKEDIN-USERNAME/details/recommendations/" target="_blank" rel="noopener">
+            ✅ View & verify on LinkedIn
+          </a>
+        </div>
+
+        <div class="rec">
+          <!-- Replace these with your real recommendations -->
+          <div class="recitem">
+            <div class="recmeta">
+              <span><b>Client Name</b> — Role / Company</span>
+              <span>Project: Landing page</span>
             </div>
+            <p class="quote">“John is extremely responsive and delivered a clean landing page fast. Great communication.”</p>
           </div>
-        </div>
 
-        <div class="column is-half">
-          <div class="project-card">
-            <img src="https://images.pexels.com/photos/3862629/pexels-photo-3862629.jpeg?auto=compress&cs=tinysrgb&w=1600" />
-            <div class="p-5">
-              <h3 class="title is-4">Industrial Factory CAD Layout</h3>
-              <p>3D facility modeling, pathways, safety zones, utilities, and equipment planning.</p>
+          <div class="recitem">
+            <div class="recmeta">
+              <span><b>Client Name</b> — Role / Company</span>
+              <span>Project: Podcast editing</span>
             </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="has-text-centered mt-4">
-        <a href="#projects" class="button is-dark is-small">See More Completed Projects</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FEATURED WORK -->
-  <section class="section" id="projects" data-aos="fade-up">
-    <div class="container">
-      <h2 class="title is-3 has-text-centered">Featured Engineering Work</h2>
-
-      <div class="columns is-multiline mt-5">
-
-        <div class="column is-one-third">
-          <div class="project-card">
-            <img src="https://images.pexels.com/photos/4484078/pexels-photo-4484078.jpeg?auto=compress&cs=tinysrgb&w=1600" />
-            <div class="p-4">
-              <h3 class="title is-4">Mechanical Prototypes</h3>
-              <p>Frames, gears, mechanical assemblies, motion rigs, and testing structures.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="column is-one-third">
-          <div class="project-card">
-            <img src="https://images.pexels.com/photos/4484070/pexels-photo-4484070.jpeg?auto=compress&cs=tinysrgb&w=1600" />
-            <div class="p-4">
-              <h3 class="title is-4">Embedded Systems</h3>
-              <p>Microcontrollers, sensor automation, relays, and programmed logic systems.</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="column is-one-third">
-          <div class="project-card">
-            <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1600" />
-            <div class="p-4">
-              <h3 class="title is-4">Thesis Systems</h3>
-              <p>Defense-ready documentation, testing, sensor logic, fabrication, and coding.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="has-text-centered mt-4">
-        <a href="#contact" class="button is-dark is-small">See More Engineering Work</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CASE STUDIES -->
-  <section class="section" data-aos="fade-up">
-    <div class="container">
-      <h2 class="title is-3 has-text-centered">Case Studies</h2>
-
-      <div class="columns mt-5">
-        <div class="column">
-          <div class="case-box">
-            <h3 class="title is-4">Egg Incubator V3 Upgrade</h3>
-            <p>Reduced heat fluctuation by 37%, improved hatch rate, added safety shutdown controls.</p>
-          </div>
-        </div>
-
-        <div class="column">
-          <div class="case-box">
-            <h3 class="title is-4">Factory Layout Optimization</h3>
-            <p>Cut worker travel distance by 22%, improved production flow efficiency.</p>
-          </div>
-        </div>
-
-        <div class="column">
-          <div class="case-box">
-            <h3 class="title is-4">Smart Automation</h3>
-            <p>Built IR sensing, real-time monitoring, and automated actuation for hardware labs.</p>
+            <p class="quote">“Reliable editor. Improved pacing and audio clarity. Deadline met.”</p>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <!-- GALLERY -->
-  <section class="section" data-aos="fade-up">
-    <div class="container">
-      <h2 class="title is-3 has-text-centered">Gallery</h2>
-
-      <div class="columns is-multiline mt-5">
-        <div class="column is-one-quarter">
-          <img src="https://images.pexels.com/photos/373543/pexels-photo-373543.jpeg?auto=compress&cs=tinysrgb&w=1600" class="gallery-img" />
-        </div>
-        <div class="column is-one-quarter">
-          <img src="https://images.pexels.com/photos/4792726/pexels-photo-4792726.jpeg?auto=compress&cs=tinysrgb&w=1600" class="gallery-img" />
-        </div>
-        <div class="column is-one-quarter">
-<img src="https://images.pexels.com/photos/2569839/pexels-photo-2569839.jpeg?auto=compress&cs=tinysrgb&w=1600" class="gallery-img" />
-        </div>
-        <div class="column is-one-quarter">
-          <img src="https://images.pexels.com/photos/3862373/pexels-photo-3862373.jpeg?auto=compress&cs=tinysrgb&w=1600" class="gallery-img" />
-        </div>
+      <div class="card half">
+        <h2>Portfolio</h2>
+        <div class="muted">Add links, screenshots, or case studies here.</div>
+        <ul class="muted">
+          <li><a href="#" target="_blank" rel="noopener">Project 1</a> — short outcome</li>
+          <li><a href="#" target="_blank" rel="noopener">Project 2</a> — short outcome</li>
+        </ul>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- TEAM -->
-  <section class="section" id="team" data-aos="fade-up">
-    <div class="container has-text-centered">
-      <h2 class="title is-3">Our Team</h2>
+    <footer>
+      © <span id="y"></span> Your Name. Built with plain HTML for speed.
+    </footer>
+  </div>
 
-      <div class="columns is-multiline mt-5">
-
-        <div class="column is-one-fifth">
-          <div class="team-card">
-            <img src="https://randomuser.me/api/portraits/men/41.jpg" class="team-photo">
-            <h3 class="title is-5 mt-2">Christopher Anay</h3>
-            <p>Mechanical & Hardware Engineer</p>
-          </div>
-        </div>
-
-        <div class="column is-one-fifth">
-          <div class="team-card">
-            <img src="https://randomuser.me/api/portraits/men/39.jpg" class="team-photo">
-            <h3 class="title is-5 mt-2">John Ashley Gime</h3>
-            <p>Software & Embedded Systems</p>
-          </div>
-        </div>
-
-        <div class="column is-one-fifth">
-          <div class="team-card">
-            <img src="https://randomuser.me/api/portraits/men/22.jpg" class="team-photo">
-            <h3 class="title is-5 mt-2">Carl Morada</h3>
-            <p>Automation Logic & Debugging</p>
-          </div>
-        </div>
-
-        <div class="column is-one-fifth">
-          <div class="team-card">
-            <img src="https://randomuser.me/api/portraits/men/72.jpg" class="team-photo">
-            <h3 class="title is-5 mt-2">Clarence Villanueva</h3>
-            <p>AutoCAD & Technical Drafting</p>
-          </div>
-        </div>
-
-        <div class="column is-one-fifth">
-          <div class="team-card">
-            <img src="https://randomuser.me/api/portraits/men/14.jpg" class="team-photo">
-            <h3 class="title is-5 mt-2">John Paul Labrador</h3>
-            <p>Automotive & Diagnostics</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- TESTIMONIALS -->
-  <section class="section" id="testimonials" data-aos="fade-up">
-    <div class="container has-text-centered">
-      <h2 class="title is-3">Client Feedback</h2>
-
-      <div class="columns is-multiline mt-5">
-
-        <div class="column is-one-third">
-          <div class="testimonial-card p-5">
-            <p>“Reliable engineering execution from start to finish.”</p>
-            <strong>— RMC Engineering</strong>
-          </div>
-        </div>
-
-        <div class="column is-one-third">
-          <div class="testimonial-card p-5">
-            <p>“Our thesis passed smoothly. They guided us well.”</p>
-            <strong>— UST Students</strong>
-          </div>
-        </div>
-
-        <div class="column is-one-third">
-          <div class="testimonial-card p-5">
-            <p>“High-quality CAD and prototype work. Very professional.”</p>
-            <strong>— JL Fabrication</strong>
-          </div>
-        </div>
-
-        <div class="column is-one-third">
-          <div class="testimonial-card p-5">
-            <p>“Premium fabrication quality. Malinis gumawa.”</p>
-            <strong>— Laguna Engineering</strong>
-          </div>
-        </div>
-
-        <div class="column is-one-third">
-          <div class="testimonial-card p-5">
-            <p>“The automation system worked flawlessly.”</p>
-            <strong>— TechLabs PH</strong>
-          </div>
-        </div>
-
-        <div class="column is-one-third">
-          <div class="testimonial-card p-5">
-            <p>“Fast, reliable, and on-time delivery.”</p>
-            <strong>— Cavite Builders</strong>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- DOCUMENTATION -->
-  <section class="section" data-aos="fade-up">
-    <div class="container">
-      <h2 class="title is-3 has-text-centered">Documentation & Deliverables</h2>
-      <p class="has-text-centered mt-3" style="max-width:750px;margin:auto;">
-        Every project includes complete documentation to ensure clarity, transparency, and defense-ready presentation.
-      </p>
-
-      <div class="columns mt-5">
-        <div class="column">
-          <div class="service-box">
-            <h3 class="title is-4">System Architecture</h3>
-            <p>Block diagrams, flowcharts, logic modeling, and component layout.</p>
-          </div>
-        </div>
-
-        <div class="column">
-          <div class="service-box">
-            <h3 class="title is-4">Wiring Diagrams</h3>
-            <p>Detailed pinout, relay mapping, sensor placement, and electrical layout.</p>
-          </div>
-        </div>
-
-        <div class="column">
-          <div class="service-box">
-            <h3 class="title is-4">Testing & Calibration Logs</h3>
-            <p>Performance data, recorded testing cycles, automation logic validation.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="section" id="contact" data-aos="fade-up">
-    <div class="container has-text-centered">
-      <h2 class="title is-3">Contact Us</h2>
-      <p class="mt-2">Book your free consultation call today.</p>
-
-      <form style="max-width:480px;margin:auto;" class="mt-5">
-        <div class="field">
-          <input class="input" type="text" placeholder="Your Name" required>
-        </div>
-        <div class="field">
-          <input class="input" type="email" placeholder="Your Email" required>
-        </div>
-        <div class="field">
-          <input class="input" type="text" placeholder="Project Type (Thesis, Prototype, CAD...)">
-        </div>
-        <div class="field">
-          <textarea class="textarea" placeholder="Tell us about your project..."></textarea>
-        </div>
-        <button class="button is-primary is-fullwidth">Send & Book a Call</button>
-      </form>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer has-text-centered">
-    <p class="mb-3">© 2025 Engineering Project Studio. All rights reserved.</p>
-
-    <div class="social-icons">
-      <a href="#"><i class="fa-brands fa-facebook"></i></a>
-      <a href="#"><i class="fa-brands fa-instagram"></i></a>
-      <a href="#"><i class="fa-brands fa-youtube"></i></a>
-    </div>
-
-    <p class="mt-3" style="max-width:700px;margin:auto;">
-      We help students, engineers, and companies build real, functional systems through advanced engineering,
-      automation, and CAD modeling. Our goal is to bring your ideas to life through precise fabrication,
-      modern software, and tested engineering logic.
-    </p>
-
-    <p class="mt-4">Built with passion, precision, and engineering excellence.</p>
-  </footer>
-
-  <script src="https://kit.fontawesome.com/a2e860f6c1.js" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>AOS.init({ duration: 900, once: true });</script>
-
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
